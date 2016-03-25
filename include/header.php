@@ -25,15 +25,13 @@
 
 <nav class="navbar">
     <div class="container">
-        <a class="navbar-brand" href="#">Webstore</a>
+        <a class="navbar-brand" href="index.php">Webstore</a>
         <div class="dropdown nav navbar-nav navbar-right">
             <a class="dropdown-toggle btn btn-lg btn-default" data-toggle="dropdown"  aria-expanded="false">
                 <i class="fa fa-cog fa-lg"></i> <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-                <li><a href="#">Request Admin Access</a></li>
-                <li><a href="#"><i class="fa fa-sign-out fa-lg"></i> Log Off</a></li>
-
+                <li><a href="logout.php"><i class="fa fa-sign-out fa-lg"></i> Log Off</a></li>
             </ul>
         </div>
     </div>
@@ -41,7 +39,7 @@
 
 <div class="container-fluid breadcrumbBox text-center">
     <ol class="breadcrumb">
-        <li><a href="#">Review</a></li>
+        <li><a href="#">Browse Store</a></li>
         <li class="active"><a href="#">Order</a></li>
         <li><a href="#">Payment</a></li>
     </ol>

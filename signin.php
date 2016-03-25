@@ -14,6 +14,7 @@ require 'include/header.php';
             </div>
             <div class="form-group col-md-10">
                 <input type="password" name="password" placeholder="Password" class="form-control">
+                <span class="help-block"><a href="register.php">New Users Register Here</a></span>
             </div>
             <div class="form-group">
                 <div class="col-lg-10">
