@@ -11,8 +11,8 @@
 
 </div>
 
-<div id="footer" class="container-fluid">
-    <div class="navbar navbar-inverse navbar-fixed-bottom">
+<div id="footer" class="">
+    <div class="navbar navbar-inverse">
         <h4 class="text-center text-info">© 2016 University Of Kentucky</h4>
     </div>
 </div>
