@@ -17,6 +17,7 @@ $info = $SQL->fetch();
 <div class="col-md-offset-2 col-md-8">
     <div class="thumbnail">
         <img src="http://placehold.it/820x320" alt=""/>
+        <input type="hidden" id="prodID" value="<?=$info["Id"]?>">
         <div class="caption-full">
             <h4 class="pull-right">$<?=$info["Price"]?></h4>
             <h4><a href="http://demos.maxoffsky.com/shop-reviews/products/1"><?=$info["Name"]?></a></h4>
@@ -28,9 +29,23 @@ $info = $SQL->fetch();
             </p>
         </div>
         <div class="ratings">
-            <p class="pull-right">976 reviews</p>
-            <p><span class="order">
-                <a style="display: inline-block" href="#" class="order">Order</a></span>
+            <p class="pull-right">
+
+            </p>
+            <p>
+
+            <div  class="form-group">
+                <label for="sel1">Qty:</label>
+                <select class="form-control" id="sel1">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                </select>
+                <span class="order">
+                <a style="display: inline-block" href="#" id="order" class="order">Add to Cart</a>
+                </span>
+            </div>
             </p>
         </div>
     </div>
@@ -40,3 +55,15 @@ $info = $SQL->fetch();
 <?php
 require 'include/footer.php';
 ?>
+<script>
+
+
+    $(document).ready(function(){
+        $("#order").click(function() {
+            $.post("process/processCart.php",{Id : $("#prodID").val() , Qty : $("#sel1").val() });
+        });
+
+    });
+
+
+</script>
