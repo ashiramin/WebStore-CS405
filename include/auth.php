@@ -6,7 +6,7 @@
  * Time: 5:25 PM
  */
 session_start();
-$_SESSION["cart"] = array();
+//$_SESSION["cart"] = array();
 if(!isset($_SESSION['login']) || (trim($_SESSION['login']) == '')) {
     header("location: signin.php");
     exit();

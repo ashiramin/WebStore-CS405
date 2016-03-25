@@ -6,4 +6,5 @@
  * Time: 2:22 PM
  */
 session_start();
+unset($_SESSION["cart"]["1"]);
 print_r($_SESSION["cart"]);

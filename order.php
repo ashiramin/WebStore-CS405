@@ -2,7 +2,6 @@
 <?php
 require 'config/conn.php';
 require 'include/header.php';
-
 ?>
 
 <div class="container text-center">
@@ -22,44 +21,46 @@ require 'include/header.php';
                 <span>ITEM</span>
                 <span>Price</span>
             </li>
-            <li class="row">
-                <span class="quantity">1</span>
-                <span class="itemName">Birthday Cake</span>
-                <span class="popbtn"><a class="arrow"></a></span>
-                <span class="price">$49.95</span>
-            </li>
-            <li class="row">
-                <span class="quantity">50</span>
-                <span class="itemName">Party Cups</span>
-                <span class="popbtn"><a class="arrow"></a></span>
-                <span class="price">$5.00</span>
-            </li>
-            <li class="row">
-                <span class="quantity">20</span>
-                <span class="itemName">Beer kegs</span>
-                <span class="popbtn"><a class="arrow"></a></span>
-                <span class="price">$919.99</span>
-            </li>
-            <li class="row">
-                <span class="quantity">18</span>
-                <span class="itemName">Pound of beef</span>
-                <span class="popbtn"><a class="arrow"></a></span>
-                <span class="price">$269.45</span>
-            </li>
-            <li class="row">
-                <span class="quantity">1</span>
-                <span class="itemName">Bullet-proof vest</span>
-                <span class="popbtn"  data-parent="#asd" data-toggle="collapse" data-target="#demo"><a class="arrow"></a></span>
-                <span class="price">$450.00</span>
-            </li>
+<?php
+session_start();
+$cart = $_SESSION["cart"];
+$total = 0;
+foreach ($cart as $prodID => $qty) {
+    $SQL = $conn->prepare("Select Price * ? as total , Name from Product where Id = ?");
+    $SQL->bindValue("1",$qty);
+    $SQL->bindValue("2",$prodID);
+    $SQL->execute();
+    $info = $SQL->fetch();
+    $total+= $info["total"]
+    ?>
+    <form id="orderform">
+    <li class="row">
+        <span class="quantity">
+            <div  class="form-group row ">
+                <select name="<?=$prodID?>" class="form-control"  id="sel1">
+                    <option <?=$qty==0 ? 'selected' : '' ?>>0</option>
+                    <option <?=$qty==1 ? 'selected' : '' ?>>1</option>
+                    <option <?=$qty==2 ? 'selected' : '' ?>>2</option>
+                    <option <?=$qty==3 ? 'selected' : '' ?>>3</option>
+                    <option <?=$qty==4 ? 'selected' : '' ?> >4</option>
+                </select>
+            </div>
+        </span>
+        <span class="itemName"><?=$info["Name"]?></span>
+        <span class="popbtn"><a class="arrow"></a></span>
+        <span class="price">$<?=$info["total"]?></span>
+    </li>
+    <?
+}
+?>
             <li class="row totals">
                 <span class="itemName">Total:</span>
-                <span class="price">$1694.43</span>
-                <span class="order"> <a class="text-center">ORDER</a></span>
+                <span class="price">$<?=$total?></span>
+                <span class="order"> <a class="text-center" id="order">ORDER</a></span>
             </li>
         </ul>
     </div>
-
+    </form>
 </div>
 
 <!-- The popover content -->
@@ -72,3 +73,17 @@ require 'include/header.php';
 <?php
 require 'include/footer.php';
 ?>
+<script>
+
+
+    $(document).ready(function(){
+        console.log($("#orderform").serialize());
+        $("#order").click(function() {
+            $.post("process/updateCart.php", $("#orderform").serialize(), function () {
+                location.reload();
+            });
+        });
+    });
+
+
+</script>

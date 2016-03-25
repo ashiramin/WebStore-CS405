@@ -16,9 +16,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 
-    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/WebStore-CS405/assets/css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"/>
-    <link rel="stylesheet" type="text/css" href="assets/css/custom.css"/>
+    <link rel="stylesheet" type="text/css" href="/WebStore-CS405/assets/css/custom.css"/>
     <link rel="stylesheet" type="text/css" href="http://blackrockdigital.github.io/startbootstrap-shop-homepage/css/shop-homepage.css"/>
 </head>
 
@@ -26,13 +26,13 @@
 
 <nav class="navbar">
     <div class="container">
-        <a class="navbar-brand" href="index.php">Webstore</a>
+        <a class="navbar-brand" href="/WebStore-CS405/">Webstore</a>
         <div class="dropdown nav navbar-nav navbar-right">
             <a class="dropdown-toggle btn btn-lg btn-default" data-toggle="dropdown"  aria-expanded="false">
                 <i class="fa fa-cog fa-lg"></i> <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-                <li><a href="logout.php"><i class="fa fa-sign-out fa-lg"></i> Log Off</a></li>
+                <li><a href="/WebStore-CS405/logout.php"><i class="fa fa-sign-out fa-lg"></i> Log Off</a></li>
             </ul>
         </div>
     </div>
