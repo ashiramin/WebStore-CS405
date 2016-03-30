@@ -40,9 +40,9 @@
 
 <div class="container-fluid breadcrumbBox text-center">
     <ol class="breadcrumb">
-        <li><a href="#">Browse Store</a></li>
-        <li class="active"><a href="#">Order</a></li>
-        <li><a href="#">Payment</a></li>
+        <li><a href="/WebStore-CS405/">Browse Store</a></li>
+        <li class="active"><a href="/WebStore-CS405/order.php">Order</a></li>
+        <li><a href="/WebStore-CS405/checkout.php">Checkout</a></li>
     </ol>
 </div>
 

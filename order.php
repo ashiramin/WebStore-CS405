@@ -52,6 +52,8 @@ foreach ($cart as $prodID => $qty) {
     </li>
     <?
 }
+
+    $_SESSION["total"] = $total;
 ?>
             <li class="row totals">
                 <span class="itemName">Total:</span>
@@ -87,3 +89,4 @@ require 'include/footer.php';
 
 
 </script>
+
