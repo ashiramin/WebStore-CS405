@@ -14,6 +14,9 @@ $SQL->bindValue('1',$_SESSION['userid']);
 $SQL->execute();
 
 
+
+
+
 ?>
 
 <table class="table table-striped table-bordered">
@@ -37,7 +40,7 @@ $SQL->execute();
                 <?=$info["OrderDate"]?>
             </td>
             <td>
-                <?=$info['Status'] ==0 ? "Order not process" : "on its way"?>
+                <?=$info['Status'] ==0 ? "Pending" : "Shipped"?>
 
             </td>
             <td>

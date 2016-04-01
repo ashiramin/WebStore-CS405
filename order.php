@@ -28,12 +28,27 @@ if (isset($_SESSION["cart"])) {
 $cart = $_SESSION["cart"];
 $total = 0;
 foreach ($cart as $prodID => $qty) {
-$SQL = $conn->prepare("Select Price * ? as total , Name from Product where Id = ?");
+
+//$SQL = $conn->prepare("Select Price * ? as total , Name from Product where Id = ?");
+
+$SQL = $conn->prepare("SELECT
+                                (CASE
+                                WHEN Promotion.Discount is null THEN Product.Price * ?
+                                WHEN Promotion.Discount is not NULL Then Product.Price*(1 - Promotion.Discount) * ?
+                                END) as total, Product.Name, Product.Price as RealPrice
+                                 FROM Product
+                                LEFT OUTER JOIN Promotion on Product.Id = Promotion.ProductID
+                                where Product.Id = ?");
+
+
 $SQL->bindValue("1", $qty);
-$SQL->bindValue("2", $prodID);
+$SQL->bindValue("2", $qty);
+$SQL->bindValue("3", $prodID);
 $SQL->execute();
 $info = $SQL->fetch();
-$total += $info["total"]
+$total += round($info["total"])
+
+
 ?>
             <form id="orderform">
                 <li class="row">
@@ -50,7 +65,7 @@ $total += $info["total"]
         </span>
                     <span class="itemName"><?= $info["Name"] ?></span>
                     <span class="popbtn"><a class="arrow"></a></span>
-                    <span class="price">$<?= $info["total"] ?></span>
+                    <span class="price">$<?= round($info["total"]) ?></span>
                 </li>
                 <?
                 }
@@ -63,7 +78,7 @@ $total += $info["total"]
                 <span class="itemName">Total:</span>
                 <span class="price">$<?=$total?></span>
                 <span class="order"> <a class="text-center" id="order">Update Cart</a></span>
-                <span class="order"> <a class="text-center"  href="checkout.php">Procees to Checkout</a></span>
+                <span class="order"> <a class="text-center"  href="checkout.php" >Procees to Checkout</a></span>
             </li>
         </ul>
     </div>
