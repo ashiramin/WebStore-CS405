@@ -32,6 +32,7 @@
                 <i class="fa fa-cog fa-lg"></i> <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
+                <li><a href="/WebStore-CS405/orderstatus.php"><i class=""></i>Order Status</a></li>
                 <li><a href="/WebStore-CS405/logout.php"><i class="fa fa-sign-out fa-lg"></i> Log Off</a></li>
             </ul>
         </div>
@@ -40,9 +41,23 @@
 
 <div class="container-fluid breadcrumbBox text-center">
     <ol class="breadcrumb">
-        <li><a href="/WebStore-CS405/">Browse Store</a></li>
-        <li class="active"><a href="/WebStore-CS405/order.php">Order</a></li>
-        <li><a href="/WebStore-CS405/checkout.php">Checkout</a></li>
+        <?
+         if (strpos($_SERVER['REQUEST_URI'],"inventory") === false) {
+             ?>
+             <li><a href="/WebStore-CS405/">Browse Store</a></li>
+             <li><a href="/WebStore-CS405/order.php">Order</a></li>
+             <li><a href="/WebStore-CS405/checkout.php">Checkout</a></li>
+            <?
+         }
+        else {
+            ?>
+            <li><a href="/WebStore-CS405/inventory/">Inventory</a></li>
+            <li><a href="/WebStore-CS405/inventory/pendingorders.php">Shipping Orders</a></li>
+
+            <?
+        }
+        ?>
+
     </ol>
 </div>
 

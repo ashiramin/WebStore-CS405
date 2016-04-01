@@ -43,7 +43,7 @@ $info = $SQL->fetch();
                     <option>4</option>
                 </select>
                 <span class="order">
-                <a style="display: inline-block" href="#" id="order" class="order">Add to Cart</a>
+                <a style="display: inline-block"     id="order" class="order">Add to Cart</a>
                 </span>
             </div>
             </p>
@@ -60,7 +60,10 @@ require 'include/footer.php';
 
     $(document).ready(function(){
         $("#order").click(function() {
-            $.post("process/processCart.php",{Id : $("#prodID").val() , Qty : $("#sel1").val() });
+            $.post("process/processCart.php",{Id : $("#prodID").val() , Qty : $("#sel1").val() }, function (data) {
+                console.log("asds");
+                 window.history.go(-1);
+            });
         });
 
     });

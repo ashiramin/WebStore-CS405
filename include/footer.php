@@ -26,12 +26,12 @@
 
         var $ol = $('ol');
 
-        if (document.URL.indexOf("checkout")) {
-
+        if (document.URL.indexOf("checkout") > 0) {
+            console.log("asdsad");
             $ol.children().removeClass("active");
             $ol.children().eq(2).addClass("active");
         }
-        else if (document.URL.indexOf("order")) {
+        else if (document.URL.indexOf("order") > 0) {
 
             $ol.children().removeClass("active");
             $ol.children().eq(1).addClass("active");

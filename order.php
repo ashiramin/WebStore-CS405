@@ -23,42 +23,47 @@ require 'include/header.php';
             </li>
 <?php
 session_start();
+
+if (isset($_SESSION["cart"])) {
 $cart = $_SESSION["cart"];
 $total = 0;
 foreach ($cart as $prodID => $qty) {
-    $SQL = $conn->prepare("Select Price * ? as total , Name from Product where Id = ?");
-    $SQL->bindValue("1",$qty);
-    $SQL->bindValue("2",$prodID);
-    $SQL->execute();
-    $info = $SQL->fetch();
-    $total+= $info["total"]
-    ?>
-    <form id="orderform">
-    <li class="row">
+$SQL = $conn->prepare("Select Price * ? as total , Name from Product where Id = ?");
+$SQL->bindValue("1", $qty);
+$SQL->bindValue("2", $prodID);
+$SQL->execute();
+$info = $SQL->fetch();
+$total += $info["total"]
+?>
+            <form id="orderform">
+                <li class="row">
         <span class="quantity">
-            <div  class="form-group row ">
-                <select name="<?=$prodID?>" class="form-control"  id="sel1">
-                    <option <?=$qty==0 ? 'selected' : '' ?>>0</option>
-                    <option <?=$qty==1 ? 'selected' : '' ?>>1</option>
-                    <option <?=$qty==2 ? 'selected' : '' ?>>2</option>
-                    <option <?=$qty==3 ? 'selected' : '' ?>>3</option>
-                    <option <?=$qty==4 ? 'selected' : '' ?> >4</option>
+            <div class="form-group row ">
+                <select name="<?= $prodID ?>" class="form-control" id="sel1">
+                    <option <?= $qty == 0 ? 'selected' : '' ?>>0</option>
+                    <option <?= $qty == 1 ? 'selected' : '' ?>>1</option>
+                    <option <?= $qty == 2 ? 'selected' : '' ?>>2</option>
+                    <option <?= $qty == 3 ? 'selected' : '' ?>>3</option>
+                    <option <?= $qty == 4 ? 'selected' : '' ?> >4</option>
                 </select>
             </div>
         </span>
-        <span class="itemName"><?=$info["Name"]?></span>
-        <span class="popbtn"><a class="arrow"></a></span>
-        <span class="price">$<?=$info["total"]?></span>
-    </li>
-    <?
-}
+                    <span class="itemName"><?= $info["Name"] ?></span>
+                    <span class="popbtn"><a class="arrow"></a></span>
+                    <span class="price">$<?= $info["total"] ?></span>
+                </li>
+                <?
+                }
+                $_SESSION["total"] = $total;
+                }
 
-    $_SESSION["total"] = $total;
+
 ?>
             <li class="row totals">
                 <span class="itemName">Total:</span>
                 <span class="price">$<?=$total?></span>
-                <span class="order"> <a class="text-center" id="order">ORDER</a></span>
+                <span class="order"> <a class="text-center" id="order">Update Cart</a></span>
+                <span class="order"> <a class="text-center"  href="checkout.php">Procees to Checkout</a></span>
             </li>
         </ul>
     </div>
