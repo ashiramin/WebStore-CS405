@@ -24,6 +24,7 @@ $SQL->execute();
 <table class="table table-striped table-bordered">
  <thead>
  <tr>
+  <th>Id</th>
   <th>Name</th>
   <th>Discount</th>
   <th>Price</th>
@@ -38,6 +39,7 @@ $SQL->execute();
   ?>
 
   <tr>
+   <td><?=$info["ProductID"]?></td>
    <td><?=$info["Name"]?></td>
    <td><span class="cost"><?=$info["Price"]?></span></td>
    <td>
