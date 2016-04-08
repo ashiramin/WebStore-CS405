@@ -10,6 +10,14 @@
 <?php
 require '../config/conn.php';
 require '../include/header.php';
+require '../include/auth.php';
+require '../include/authorize.php';
+
+if ($_SESSION['role'] != "Staff") {
+    header("location: ../i");
+
+    exit();
+}
 
 $SQL = $conn->prepare("Select * from ProductOrder where Status = 0");
 

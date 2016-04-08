@@ -8,7 +8,6 @@
 
 require 'config/conn.php';
 require 'include/header.php';
-session_start();
 $SQL = $conn->prepare("Select * from ProductOrder Where Username = ? ORDER  BY OrderDate DESC, ShippingDate");
 $SQL->bindValue('1',$_SESSION['userid']);
 $SQL->execute();

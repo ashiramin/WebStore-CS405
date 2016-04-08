@@ -9,6 +9,10 @@
 
 require "../config/conn.php";
 require "../include/auth.php";
+require '../include/auth.php';
+require '../include/authorize.php';
+
+
 
 $id = $_POST["id"];
 

@@ -22,7 +22,7 @@ require 'include/header.php';
                 <span>Price</span>
             </li>
 <?php
-session_start();
+
 
 if (isset($_SESSION["cart"])) {
 $cart = $_SESSION["cart"];
@@ -71,12 +71,17 @@ $total += round($info["total"])
                 }
                 $_SESSION["total"] = $total;
                 }
+                else {
+                    ?>
+                    <h2>Your cart is empty</h2>
+                    <?
+                }
 
 
 ?>
             <li class="row totals">
                 <span class="itemName">Total:</span>
-                <span class="price">$<?=$total?></span>
+                <span class="price">$<?=isset($total) ? $total : ''?></span>
                 <span class="order"> <a class="text-center" id="order">Update Cart</a></span>
                 <span class="order"> <a class="text-center"  href="checkout.php" >Procees to Checkout</a></span>
             </li>

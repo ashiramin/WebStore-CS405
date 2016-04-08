@@ -6,6 +6,9 @@ require 'include/header.php';
 $prodID = $_GET["Id"];
 
 $SQL = $conn->prepare("Select * from Product where Id = ?");
+$SQL = $conn->prepare("Select p.Id as Id, p.Price, p.Qty, p.Name , p.Description, Promotion.Discount, p.Name from Product p
+                      LEFT OUTER JOIN Promotion on
+                      p.Id = ?");
 $SQL->bindValue(1,$prodID);
 $SQL->execute();
 
@@ -19,7 +22,14 @@ $info = $SQL->fetch();
         <img src="http://placehold.it/820x320" alt=""/>
         <input type="hidden" id="prodID" value="<?=$info["Id"]?>">
         <div class="caption-full">
-            <h4 class="pull-right">$<?=$info["Price"]?></h4>
+            <h4 class="pull-right">
+                <?=$info["Discount"]==NULL ?
+                    '$' .$info["Price"] :
+                    '<strong>$' .
+                    $info["Price"]*(1 - $info["Discount"]) .
+                    '</strong>    <strike>' . $info["Price"] .'</strike>'
+                ?>
+            </h4>
             <h4><a href="http://demos.maxoffsky.com/shop-reviews/products/1"><?=$info["Name"]?></a></h4>
             <p><?=$info["Description"]?></p>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut

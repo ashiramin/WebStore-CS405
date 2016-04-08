@@ -11,10 +11,6 @@ $SQL = $conn->prepare("Select p.Id as Id, p.Price, p.Qty, p.Description, Promoti
 
 $SQL->execute();
 
-//;
-$SQL1 = $conn->prepare("Select * from Promotion");
-
-$SQL1->execute();
 ?>
 
 <div class="form-group col-md-4">
@@ -25,7 +21,7 @@ $SQL1->execute();
 <br/>
 <?php
 while ($info = $SQL->fetch()) {
-    
+
     ?>
     <a href="productdetails.php?Id=<?=$info["Id"]?>">
         <div class="col-sm-4 col-lg-4 col-md-4">

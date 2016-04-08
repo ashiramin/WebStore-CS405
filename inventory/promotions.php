@@ -11,6 +11,8 @@
 <?php
 require '../config/conn.php';
 require '../include/header.php';
+require '../include/auth.php';
+require '../include/authorize.php';
 
 $SQL = $conn->prepare("Select p.Id as ProductID, p.Price, Promotion.Discount, p.Name from Product p
                       LEFT OUTER JOIN Promotion on
