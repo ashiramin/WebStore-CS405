@@ -13,13 +13,15 @@ require '../include/header.php';
 require '../include/auth.php';
 require '../include/authorize.php';
 
-if ($_SESSION['role'] != "Staff") {
-    header("location: ../i");
+$os = array("Manager","Staff");
 
+if (!in_array($_SESSION['role'],$os)) {
+    header("location: ../");
     exit();
 }
 
-$SQL = $conn->prepare("Select * from ProductOrder where Status = 0");
+$SQL = $conn->prepare("Select t1.Id, t3.Name,t2.Qty,t1.total, t1.Username, t1.OrderDate from ProductOrder t1, OrderLines t2 , Product t3 where  t1.Id = t2.OrderId and t2.ProductId = t3.Id and
+t1.Status = 0");
 
 
 $SQL->execute();
@@ -29,6 +31,7 @@ $SQL->execute();
 <table class="table table-striped table-bordered">
     <thead>
     <tr>
+        <th>Order Id</th>
         <th>User</th>
         <th>Total</th>
         <th>Order Date</th>
@@ -40,6 +43,10 @@ $SQL->execute();
     while ($info = $SQL->fetch()) {
         ?>
         <tr>
+            <td>
+                <span><?=$info["Id"]?></span>
+
+            </td>
             <td>
                 <span><?=$info["Username"]?></span>
                 <input type="hidden" value="<?=$info["Id"]?>" />
@@ -79,8 +86,11 @@ require '../include/footer.php';
                var $id =  $(this).parent().parent().find("input[type=hidden]").val();
                 $.post("processorders.php",
                     {id:$id,username :$ol }, function(data) {
-                        location.reload();
-                    });
+                     //   location.reload();
+                    }).error(function (data) {
+
+                    alert("please increase inventory for " + JSON.parse(data.responseText).msg);
+                });
             });
 
 

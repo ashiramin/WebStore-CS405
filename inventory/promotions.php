@@ -14,6 +14,15 @@ require '../include/header.php';
 require '../include/auth.php';
 require '../include/authorize.php';
 
+$os = array("Manager","Staff");
+
+if (!in_array($_SESSION['role'],$os)) {
+ header("location: ../");
+ //$a  = $_SESSION['role'] != "Manager";
+ //var_dump($a);
+ exit();
+}
+
 $SQL = $conn->prepare("Select p.Id as ProductID, p.Price, Promotion.Discount, p.Name from Product p
                       LEFT OUTER JOIN Promotion on
                       p.Id = Promotion.ProductID");

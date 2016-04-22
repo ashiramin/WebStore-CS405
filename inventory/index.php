@@ -13,9 +13,10 @@ require '../include/header.php';
 require '../include/auth.php';
 require '../include/authorize.php';
 
-if ($_SESSION['role'] != "Staff") {
-    header("location: ../i");
+$os = array("Manager","Staff");
 
+if (!in_array($_SESSION['role'],$os)) {
+    header("location: ../");
     exit();
 }
 

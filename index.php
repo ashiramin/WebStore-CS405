@@ -11,6 +11,7 @@ $SQL = $conn->prepare("Select p.Id as Id, p.Price, p.Qty, p.Description, Promoti
 
 $SQL->execute();
 
+print_r($_SESSION);
 ?>
 
 <div class="form-group col-md-4">
