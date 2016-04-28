@@ -33,7 +33,20 @@ session_start();
             </a>
             <ul class="dropdown-menu">
                 <li><a href="/WebStore-CS405/orderstatus.php"><i class=""></i>Order Status</a></li>
-                <li><a href="/WebStore-CS405/logout.php"><i class="fa fa-sign-out fa-lg"></i> Log Off</a></li>
+                <?
+                 if (isset($_SESSION['login'])) {
+                    ?>
+                     <li><a href="/WebStore-CS405/logout.php"><i class="fa fa-sign-out fa-lg"></i> Log Off</a></li>
+                    <?
+                 }
+                else {
+                    ?>
+                    <li><a href="/WebStore-CS405/signin.php"><i class="fa fa-sign-out fa-lg"></i> Log in</a></li>
+                    <?
+                }
+
+                ?>
+
             </ul>
         </div>
     </div>

@@ -20,11 +20,23 @@ function test_input($data) {
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($_POST['confirmpassword'] != $_POST['password'] ) {
-        header('location: ../signup.php?error=1');
+        header('location: ../register.php?error=1');
         exit;
     }
     $username = test_input($_POST['username']);
     $password = test_input($_POST['password']);
+
+    $SQL = $conn->prepare('Select * from User where username = ?');
+    $SQL->bindValue('1',$username);
+    $SQL->execute();
+
+    if ($SQL->rowCount() > 0) {
+        header('location: ../register.php?error=2');
+        exit;
+    }
+
+
+
     $SQL = $conn->prepare('INSERT INTO User (username,password) values (?,?)');
     $SQL->bindValue('1',$username);
     $SQL->bindValue('2',$password);
@@ -39,8 +51,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($SQL->rowCount() > 0) {
         session_start();
         $_SESSION['login'] = 1;
-        $_SESSION['userid'] = $info['UserId'];
-        //header('location: ../');
+        $_SESSION['userid'] = $info['Username'];
+        header('location: ../');
         exit;
     }
 }

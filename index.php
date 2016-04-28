@@ -2,16 +2,24 @@
 <?php
 require 'config/conn.php';
 require 'include/header.php';
-require  'include/auth.php';
 
-$SQL = $conn->prepare("Select * from Product");
-$SQL = $conn->prepare("Select p.Id as Id, p.Price, p.Qty, p.Description, Promotion.Discount, p.Name from Product p
+
+if (isset($_GET['q'])) {
+    $SQL = $conn->prepare("Select p.Id as Id, p.Price, p.Qty, p.Description, Promotion.Discount, p.Name from Product p
+                      LEFT OUTER JOIN Promotion on
+                      p.Id = Promotion.ProductID where p.Name like ?");
+    $parameter = '%' . $_GET['q'] . '%';
+    $SQL->execute(array($parameter));
+
+}
+else {
+    $SQL = $conn->prepare("Select p.Id as Id, p.Price, p.Qty, p.Description, Promotion.Discount, p.Name from Product p
                       LEFT OUTER JOIN Promotion on
                       p.Id = Promotion.ProductID");
+    $SQL->execute();
 
-$SQL->execute();
+}
 
-print_r($_SESSION);
 ?>
 
 <div class="form-group col-md-4">

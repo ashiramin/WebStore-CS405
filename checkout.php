@@ -9,6 +9,8 @@
 require 'config/conn.php';
 require 'include/header.php';
 require  'include/auth.php';
+
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     try {
@@ -37,6 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         //$conn->rollBack();
         echo "Error: " . $e->getMessage() . "<br />\n";
     }
+    unset($_SESSION['cart']);
 }
 
 if (!isset($_SESSION["total"])) {
