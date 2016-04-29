@@ -93,11 +93,6 @@ require '../include/footer.php';
 
             }
 
-
-
-            console.log($span.is(":visible"));
-            console.log($input.is(":visible"));
-
         });
 
 

@@ -36,12 +36,28 @@
             $ol.children().removeClass("active");
             $ol.children().eq(1).addClass("active");
         }
+
+        else if (document.URL.indexOf("sales") > 0) {
+
+            $ol.children().removeClass("active");
+            $ol.children().eq(3).addClass("active");
+        }
+        else if (document.URL.indexOf("promo") > 0) {
+
+            $ol.children().removeClass("active");
+            $ol.children().eq(2).addClass("active");
+        }
         else {
             $ol.children().removeClass("active");
             $ol.children().eq(0).addClass("active");
         }
 
     })();
+
+    $("#search").click(function () {
+        console.log(window.location);
+        window.location.href = window.location.origin + window.location.pathname + "?q=" + $("#value").val();
+    });
 </script>
 </body>
 </html>

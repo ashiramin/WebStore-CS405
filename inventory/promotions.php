@@ -37,8 +37,8 @@ $SQL->execute();
  <tr>
   <th>Id</th>
   <th>Name</th>
-  <th>Discount</th>
   <th>Price</th>
+  <th>Discount</th>
   <th>Effective Price</th>
   <th>Action</th>
  </tr>

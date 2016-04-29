@@ -9,16 +9,18 @@
 
 require "../config/conn.php";
 
-
+session_start();
 
 $id = $_POST["id"];
 
 $discount = $_POST["discount"];
-//echo ($discount);
 
-if ($discount ==0) {
-    $SQL = $conn->prepare("Delete  from Promotion where Id = ?");
+
+if ($discount == 0) {
+    echo ($id);
+    $SQL = $conn->prepare("Delete from Promotion where ProductID = ?");
     $SQL->bindValue("1",$id);
+    $SQL->execute();
 }
 else {
     $SQL = $conn->prepare("Select * from Promotion where ProductID = ?");

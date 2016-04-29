@@ -66,6 +66,7 @@ session_start();
             ?>
             <li><a href="/WebStore-CS405/inventory/">Inventory</a></li>
             <li><a href="/WebStore-CS405/inventory/pendingorders.php">Shipping Orders</a></li>
+            <li><a href="/WebStore-CS405/inventory/promotions.php">Promotions</a></li>
             <li><a href="/WebStore-CS405/inventory/salesstatistics.php">Statistics</a></li>
 
             <?

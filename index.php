@@ -7,9 +7,9 @@ require 'include/header.php';
 if (isset($_GET['q'])) {
     $SQL = $conn->prepare("Select p.Id as Id, p.Price, p.Qty, p.Description, Promotion.Discount, p.Name from Product p
                       LEFT OUTER JOIN Promotion on
-                      p.Id = Promotion.ProductID where p.Name like ?");
+                      p.Id = Promotion.ProductID where p.Name like ? OR p.Description like ?");
     $parameter = '%' . $_GET['q'] . '%';
-    $SQL->execute(array($parameter));
+    $SQL->execute(array($parameter,$parameter));
 
 }
 else {
@@ -23,7 +23,8 @@ else {
 ?>
 
 <div class="form-group col-md-4">
-    <input type="search" class="form-control"/>
+    <input type="search" id="value"  class="form-control"/>
+    <input type="button" id="search" class="btn btn-default" value="Search" />
 </div>
 <div style="clear: both;"></div>
 <br/>

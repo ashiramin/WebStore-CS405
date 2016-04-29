@@ -86,7 +86,7 @@ require '../include/footer.php';
                var $id =  $(this).parent().parent().find("input[type=hidden]").val();
                 $.post("processorders.php",
                     {id:$id,username :$ol }, function(data) {
-                     //   location.reload();
+                        location.reload();
                     }).error(function (data) {
 
                     alert("please increase inventory for " + JSON.parse(data.responseText).msg);

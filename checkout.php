@@ -40,6 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo "Error: " . $e->getMessage() . "<br />\n";
     }
     unset($_SESSION['cart']);
+    unset($_SESSION["total"]);
 }
 
 if (!isset($_SESSION["total"])) {
